@@ -1,23 +1,34 @@
 module Memory
   class Game
-    def initialize(game_length)
+    attr_reader :sequence, :lost
 
+    def initialize(game_length, sequence = nil)
+      @lost = false
+      @sequence = Sequencer.new.build(sequence) || Sequencer.new.generate(game_length)
     end
 
     def start
       self
     end
 
-    def sequence
-      Array.new(10)
+    def play(move)
+      sequence.shift.matches?(move) || (lose! && false)
     end
 
-    def play(move)
-      true
+    def moves_left
+      sequence.count
     end
 
     def won?
-      true
+      sequence.empty?
+    end
+
+    def lost?
+      lost
+    end
+
+    def lose!
+      @lost = true
     end
   end
 end
