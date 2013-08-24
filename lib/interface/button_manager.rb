@@ -1,6 +1,6 @@
 module Interface
 	class ButtonManager
-		def initialize(app, mappings={})
+		def initialize(app, mappings)
 			@app = app
 			@mappings = mappings
 			@notes = Memory::Note.build_set(mappings.keys)
