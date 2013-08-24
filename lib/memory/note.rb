@@ -21,5 +21,11 @@ module Memory
     def ==(other)
       name == other.name
     end
+
+    def self.build_set(letters)
+      letters.each_with_object({}) do |letter, collection|
+        collection[letter] = new(letter.upcase)
+      end
+    end
   end
 end
