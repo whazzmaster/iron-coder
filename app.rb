@@ -14,7 +14,7 @@ Shoes.app(title: 'Keyboard Hero', height: 250) do
   game_manager.play
 
   button("Play!") do 
-    every(0.5) do 
+    every(1) do 
       puts "Toggling sequence start"
       game_manager.play_sequence_step
       puts "Toggling sequence stop"
