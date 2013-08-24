@@ -1,6 +1,6 @@
 module Memory
   class Game
-    attr_reader :sequence, :lost
+    attr_reader :sequence, :lost, :current_index
 
     def initialize(game_length, sequence = nil)
       @lost = false
@@ -8,11 +8,24 @@ module Memory
     end
 
     def start
-      self
+      @current_index = 0
     end
 
-    def play(move)
-      sequence.next.matches?(move) || (lose! && false)
+    def play(moves)
+      unless lost?
+        if sequence.for_range(0, current_index) == Sequence.build(moves.join)
+          advance
+          true
+        else
+          lose! && false
+        end
+      else
+        raise "You've already lost!"
+      end
+    end
+
+    def advance
+      @current_index += 1
     end
 
     def moves_left
@@ -20,7 +33,7 @@ module Memory
     end
 
     def won?
-      sequence.finished?
+      current_index == sequence.count
     end
 
     def lost?
@@ -29,6 +42,10 @@ module Memory
 
     def lose!
       @lost = true
+    end
+
+    def next_sequence
+      sequence.for_range(0, current_index)
     end
   end
 end

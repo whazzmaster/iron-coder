@@ -38,5 +38,9 @@ module Memory
     def ==(other)
       notes == other.notes
     end
+
+    def for_range(start, finish)
+      Sequence.new(notes[start..finish])
+    end
   end
 end

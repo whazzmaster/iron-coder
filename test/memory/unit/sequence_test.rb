@@ -20,4 +20,11 @@ class SequenceTest < Minitest::Test
   def test_equality_of_sequences
     assert_equal Memory::Sequence.build("ABC"), Memory::Sequence.build("ABC")
   end
+
+  def test_it_creates_subsequences
+    sequence = Memory::Sequence.build("ABCEF")
+    subsequence = sequence.for_range(0, 2)
+    expected = Memory::Sequence.build("ABC")
+    assert_equal expected, subsequence
+  end
 end
