@@ -1,18 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    micromidi (0.0.9)
-      midi-eye (>= 0.1.3)
-      midi-message (>= 0.2.2)
-      unimidi (>= 0.2.3)
-    midi-eye (0.2.2)
-      midi-message
-      midi-nibbler
-      unimidi
     midi-jruby (0.0.12)
-    midi-message (0.3.2)
-    midi-nibbler (0.1.1)
-      midi-message
     minitest (5.0.6)
     unimidi (0.3.3-java)
       midi-jruby
@@ -21,5 +10,5 @@ PLATFORMS
   java
 
 DEPENDENCIES
-  micromidi
   minitest
+  unimidi
