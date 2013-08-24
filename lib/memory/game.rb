@@ -4,7 +4,11 @@ module Memory
 
     def initialize(game_length, sequence = nil)
       @lost = false
-      @sequence = Sequence.build(sequence) || Sequence.generate(game_length)
+      if sequence
+        @sequence = Sequence.build(sequence)
+      else
+        @sequence = Sequence.generate(game_length)
+      end
     end
 
     def start
