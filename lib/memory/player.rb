@@ -28,7 +28,7 @@ module Memory
     def self.build_notes
       collection = {}
       ('A'..'Z').each_with_index do |element, index|
-        collection[element] = 20 + 8*index
+        collection[element] = 20 + 2*index
       end
       collection
     end
