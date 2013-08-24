@@ -1,3 +1,4 @@
+require 'unimidi'
 require 'memory/note'
 require 'memory/sequence'
 require 'memory/game'

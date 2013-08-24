@@ -6,8 +6,12 @@ module Memory
       @name = name
     end
 
-    def play
-      true
+    def self.player
+      @player ||= Player.new
+    end
+
+    def play(duration = 0.3)
+      Note.player.play(name, duration)
     end
 
     def matches?(note)
