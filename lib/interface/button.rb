@@ -8,11 +8,6 @@ module Interface
 			@color = color
 			@app = app
 
-			# @element = app.stack do
-			# 	app.fill color
-			# 	app.rect top, left, width, height
-			# end
-
 			@app.fill white
 			@element = @app.rect top, left, width, height
 
