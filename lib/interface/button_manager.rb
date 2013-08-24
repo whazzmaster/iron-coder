@@ -9,12 +9,16 @@ module Interface
 		def listen
 			@app.keypress do |key|
 				@mappings[key].key_down if @mappings[key]
-				@notes[key].play if @notes[key]
+				play_note(key)
 			end
 
 			@app.keyrelease do |key|
 				@mappings[key].key_up if @mappings[key]
 			end
+		end
+
+		def play_note(key)
+			@notes[key].play if @notes[key]
 		end
 	end
 end

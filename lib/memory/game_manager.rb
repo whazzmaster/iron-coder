@@ -1,5 +1,7 @@
 module Memory
 	class GameManager
+		attr_reader :game
+
 		def initialize(app)
 			@app = app
 
@@ -17,14 +19,9 @@ module Memory
 				'f' => { left: 300, top: 125}
 			}
 
-			@game = Memory::Game.new(8, 'ABCD').start
-			@button_manager = Interface::ButtonManager.new(@app, @key_mappings).listen
-		end
-
-		def play
-			# while !@game.won?
-				
-			# end
+			#@game = Memory::Game.new(8, 'ABCD').start
+			@button_manager = Interface::ButtonManager.new(@app, @key_mappings)
+			@button_manager.listen
 		end
 
 		def on_win(&block)
@@ -32,6 +29,8 @@ module Memory
 		end
 
 		def layout_game
+			@game = Game.new(6)
+
 			@app.stack do
 				@key_mappings.each {|key,button| button.element }
 
@@ -39,6 +38,45 @@ module Memory
 					label = @app.title char
 					label.move coordinates[:left], coordinates[:top]
 				end
+			end
+		end
+
+		def play
+			game.start
+			#play_example(game.next_sequence)
+			@play_index = 0
+			@element_on = false
+		end
+
+		def play_sequence_step
+			if @play_sequence.nil?
+				@play_sequence = true
+			end
+
+			if @play_sequence
+				note = game.next_sequence.notes[@play_index]
+				if note
+					target = @key_mappings[note.name.downcase]
+					if @element_on == false
+						target.key_down
+						@button_manager.play_note(note.name.downcase)
+						@element_on = true
+					else
+						target.key_up
+						@element_on = false
+						@play_index += 1
+					end
+				else
+					@play_index = 0
+					@element_on = false
+					@play_sequence = false
+				end
+			end
+		end
+
+		def play_example(sequence)
+			sequence.notes.each do |note|
+				@key_mappings[note.name.downcase].key_down
 			end
 		end
 	end

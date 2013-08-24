@@ -24,12 +24,6 @@ module Interface
 			@element.style(fill: white)		
 		end
 
-		def activate
-			# key_down
-			# play note
-			# key_up
-		end
-
 		attr_accessor :element
 	end
 end

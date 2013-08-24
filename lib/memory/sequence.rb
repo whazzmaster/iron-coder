@@ -7,7 +7,7 @@ module Memory
     end
 
     def self.possible_notes
-      %w(A B C D E)
+      %w(A S D F)
     end
 
     def self.generate(quantity)
