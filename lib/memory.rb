@@ -1,7 +1,6 @@
-require './lib/memory/note'
-require './lib/memory/sequence'
-require './lib/memory/game'
+require 'memory/note'
+require 'memory/sequence'
+require 'memory/game'
 
 module Memory
-
 end
