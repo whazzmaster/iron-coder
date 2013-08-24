@@ -4,7 +4,7 @@ module Memory
 
     def initialize(game_length, sequence = nil)
       @lost = false
-      @sequence = Sequencer.new.build(sequence) || Sequencer.new.generate(game_length)
+      @sequence = Sequence.build(sequence) || Sequence.generate(game_length)
     end
 
     def start
@@ -12,7 +12,7 @@ module Memory
     end
 
     def play(move)
-      sequence.shift.matches?(move) || (lose! && false)
+      sequence.next.matches?(move) || (lose! && false)
     end
 
     def moves_left
@@ -20,7 +20,7 @@ module Memory
     end
 
     def won?
-      sequence.empty?
+      sequence.finished?
     end
 
     def lost?
