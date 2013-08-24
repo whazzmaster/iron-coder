@@ -1,5 +1,5 @@
 module Interface
-	class MusicalInputButton < Shoes
+	class Button < Shoes
 		def initialize(app, top, left, width, height, color)
 			@top = top
 			@left = left
