@@ -40,7 +40,6 @@ module Interface
 				else
 					puts "So far so good!"
 					@pending_keys = []
-					sleep 1
 					game_manager.play_sequence
 				end
 			end
