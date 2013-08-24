@@ -19,9 +19,11 @@ module Memory
 				'f' => { left: 400, top: 155}
 			}
 
-			#@game = Memory::Game.new(8, 'ABCD').start
 			@button_manager = Interface::ButtonManager.new(@app, @key_mappings)
 			@button_manager.listen
+			@game = Game.new(5)
+			@button_manager.game = @game
+			@button_manager.game_manager = self
 		end
 
 		def on_win(&block)
@@ -29,8 +31,6 @@ module Memory
 		end
 
 		def layout_game
-			@game = Game.new(6)
-
 			@app.stack do
 				banner = @app.banner("Keyboard Hero")
 				banner.margin_left = 10
@@ -47,9 +47,12 @@ module Memory
 
 		def play
 			game.start
-			#play_example(game.next_sequence)
 			@play_index = 0
 			@element_on = false
+		end
+
+		def play_sequence
+			@play_sequence = true
 		end
 
 		def play_sequence_step
